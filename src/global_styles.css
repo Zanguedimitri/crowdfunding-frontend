@@ -1,0 +1,75 @@
+body{
+    background-color: #f4f4f4c2;
+    padding: 0;
+    margin: 0;
+}
+.container {
+    padding: 10px;
+    margin: 10px;
+  }
+  .projects{
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+  h1{
+    
+  }
+
+.card{
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+    margin: 10px;
+}
+
+.cards{
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.cards > button{
+    width: fit-content;
+}
+.cards > input{
+    padding: 10px;
+    margin-bottom: 15px;
+}
+h2>span{
+    color: rgb(3, 191, 3);
+}
+
+.card > *{
+    text-align: start;
+}
+
+button{
+    color: white;
+    background-color: #007bff;
+    padding: 10px;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+}
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 20px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background-color: rgb(3, 191, 3);
+    width: 0;
+    transition: width 0.3s ease;
+    margin-bottom: 10px;
+  }
+  .progress-bar-pourcent{
+    padding: 10px 10px 10px 0px;
+  }
+  .input-error {
+    border: 1px solid red;
+  }
