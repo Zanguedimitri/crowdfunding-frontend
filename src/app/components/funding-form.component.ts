@@ -1,7 +1,9 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Project } from './../models/project.model';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Project } from '../models/project.model';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedServicesService } from '../services/shared-services.service';
+import { ProjectService } from '../services/project.service';
 
 
 @Component({
@@ -24,18 +26,50 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
     </div>
   `
 })
-export class FundingFormComponent {  
+export class FundingFormComponent implements OnInit {  
 
-
-
+logo(){
+  alert('lsfjksljfklsj')
+}
   @Input() project: Project | null = null;
   @Output() onSubmit = new EventEmitter<{ project: Project; amount: number }>();
   amount: number = 0;
 
+  project_id!:number
+
   submitFunding() {
-      console.log( typeof this.amount)
-    if (this.project) {
-      this.onSubmit.emit({ project: this.project, amount: this.amount });
+      
+  if (this.project && this.project.raised !== undefined && this.project.goal !== undefined) {   // Vérification complète
+    
+    this.onSubmit.emit({ project: this.project, amount: this.amount });
+
+    const endRaised = this.project.raised + this.amount;
+      
+    if (endRaised < this.project.goal) {
+        this.projectService.updateProject(this.project_id, { raised: endRaised }).subscribe({
+          next: (value) => {
+            this.project = value;
+            console.log(value)
+          },
+
+          error(error) {
+            console.error('Erreur lors de la récupération des projets:', error);
+          },
+        })
+    } else {
+        alert('You have reached the goal')
     }
+}
+
+    
   }
+
+  
+  constructor(private sharedService: SharedServicesService,private projectService:ProjectService){}
+  ngOnInit() {
+    this.sharedService.currentId.subscribe((id) => {
+      this.project_id = id;  
+    });
+  }
+
 }

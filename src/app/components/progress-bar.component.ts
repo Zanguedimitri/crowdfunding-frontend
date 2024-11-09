@@ -14,6 +14,7 @@ import { Component, Input } from '@angular/core';
       {{ raised }} raised of {{ goal }} goal
       ({{ goal > 0 ? ((raised / goal) * 100).toFixed(2) : 0 }}%)
     </div>
+    
   `,
  
 })

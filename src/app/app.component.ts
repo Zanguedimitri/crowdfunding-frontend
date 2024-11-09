@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ProjectService } from './services/project.service';
+import { SharedServicesService } from './services/shared-services.service';
 
 
 @Component({
@@ -65,80 +66,65 @@ import { ProjectService } from './services/project.service';
 export class AppComponent {
   projectForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
-
-  private projectService= Inject(ProjectService)
-
-  projects: Project[] = [
-    {
-      id: 1,
-      title: 'Eco-Friendly Water Bottle',
-      description: 'A sustainable water bottle made from recycled materials.',
-      goal: 10000,
-      raised: 4500
-    },
-    {
-      id: 2,
-      title: 'Community Garden',
-      description: 'Creating a sustainable garden for the local community.',
-      goal: 5000,
-      raised: 1750
-    },
-    {
-      id: 3,
-      title: 'Educational App',
-      description: 'An app to help children learn programming basics.',
-      goal: 15000,
-      raised: 9000
-    }
-  ];
+  constructor(private fb: FormBuilder, private projectService:ProjectService) {}
+  
+  projects!: Project[];
 
   selectedProject: Project | null = null;
+
+  visible: boolean = false;
 
   selectProject(project: Project) {
     this.selectedProject = project;
   }
 
-  fundProject(event: { project: Project; amount: number }) {
-    const projectIndex = this.projects.findIndex(p => p.id === event.project.id);
-    const project = this.projects[projectIndex];
-  
-    if (project) {
+  showDialog() {
+    this.visible = true;
+  }
+
+  fundProject(event: {project: Project, amount: number}) {
+    const projectIndex = this.projects.findIndex(p => p._id === event.project._id);
+    if (projectIndex === -1) {
       this.projects[projectIndex] = {
-        ...project,
-        raised: project.raised || 0 + event.amount
+        ...this.projects[projectIndex],
+        raised: this.projects[projectIndex].raised || 0 + event.amount
       };
       this.selectedProject = null;
     }
   }
 
-  visible: boolean = false;
 
-  showDialog() {
-      this.visible = true;
-  }
-
- 
   ngOnInit(): void {
     this.projectForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
       goal: [0, [Validators.required, Validators.min(1)]],
     });
+
+    this.projectService.getProject().subscribe({
+      next: (project) => {
+        this.projects = project;
+      },
+      error: (error) => {
+        console.error('Erreur lors de la récupération des projets:', error);
+      }
+    });
   }
+
   onSubmit() {
-    console.log(this.projectForm.value)
+   
     if (this.projectForm.valid) {
       const projectData = this.projectForm.value;
-      this.projectService.addProject(projectData).subscribe(
-      /*  response => {
-          console.log('Projet créé avec succès:', response);
+      this.projectService.addProject({...projectData}).subscribe({
+        next:(value) => {
+          console.log('Projet créé avec succès:', value);
           this.projectForm.reset();
-        },,
-        error => {
+        },
+        error:(error) => {
           console.error('Erreur lors de la création du projet:', error);
-        }*/
-      );
+        }
+      });
     }
   
 }}
+
