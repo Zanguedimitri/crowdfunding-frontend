@@ -1,0 +1,192 @@
+body{
+    background-color: #f4f4f4c2;
+    padding: 0;
+    margin: 0;
+}
+.container {
+    padding: 10px;
+    margin: 10px;
+  }
+  .projects{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+.card{
+    background-color: white;
+    border-radius: 10px;
+    padding: 35px;
+    margin: 10px;
+}
+
+.cards{
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.cards > button{
+    width: fit-content;
+}
+.cards > input{
+    padding: 10px;
+    margin-bottom: 15px;
+    outline: none; 
+    border-color: initial;
+    border-radius: 5px;
+}
+h2>span{
+    color: rgb(3, 191, 3);
+}
+
+.card > *{
+    text-align: start;
+}
+
+button{
+    color: white;
+    background-color: #007bff;
+    padding: 10px;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+}
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 20px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background-color: rgb(3, 191, 3);
+    width: 0;
+    transition: width 0.3s ease;
+    margin-bottom: 10px;
+  }
+  .progress-bar-pourcent{
+    padding: 10px 10px 10px 0px;
+  }
+  .input-error:focus{
+    outline: none; 
+    border: 1px solid red; 
+    border-radius: 5px;
+  }
+.container-header{
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-header > button{
+
+}
+
+/* Style du dialog */
+p-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.p-dialog .p-dialog-content {
+  padding: 1.5rem;
+}
+
+/* Conteneur de formulaire */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Labels */
+label {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+/* Champs d'entrée */
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Bouton de soumission du formulaire */
+button[type="submit"] {
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button[type="submit"]:not(:disabled):hover {
+  background-color: #0056b3;
+}
+
+/* Conteneur pour les boutons en bas du dialog */
+.flex {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+/* Bouton d'annulation */
+.p-button-secondary {
+  color: #6c757d;
+  background-color: #f8f9fa;
+  border: 1px solid #6c757d;
+}
+
+.p-button-secondary:hover {
+  background-color: #e2e6ea;
+  border-color: #5a6268;
+}
+
+/* Bouton "Create" */
+button[type="button"] {
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="button"]:hover {
+  background-color: #218838;
+}
+.container-button{
+  margin-top:10px ;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
