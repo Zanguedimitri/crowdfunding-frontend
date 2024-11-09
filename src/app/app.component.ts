@@ -112,16 +112,17 @@ export class AppComponent {
   }
 
   onSubmit() {
-   
     if (this.projectForm.valid) {
       const projectData = this.projectForm.value;
-      this.projectService.addProject({...projectData}).subscribe({
+      this.projectService.addProject(projectData).subscribe({
         next:(value) => {
           console.log('Projet créé avec succès:', value);
           this.projectForm.reset();
+          this.visible = false
         },
         error:(error) => {
           console.error('Erreur lors de la création du projet:', error);
+
         }
       });
     }
