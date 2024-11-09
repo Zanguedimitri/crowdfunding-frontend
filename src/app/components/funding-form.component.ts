@@ -16,7 +16,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
         class="input"
         placeholder="Enter amount"
         [(ngModel)]="amount"
-         [ngClass]="{'input-error': amount < 0}"
+         [ngClass]="{'input-error': amount < 0 }"
       />
       <button class="button" (click)="submitFunding()" [disabled]="amount < 0">
         Contribute
@@ -24,12 +24,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
     </div>
   `
 })
-export class FundingFormComponent {
-
-
-  private fb = inject(FormBuilder)
-
-  
+export class FundingFormComponent {  
 
 
 
@@ -38,7 +33,7 @@ export class FundingFormComponent {
   amount: number = 0;
 
   submitFunding() {
-      
+      console.log( typeof this.amount)
     if (this.project) {
       this.onSubmit.emit({ project: this.project, amount: this.amount });
     }
